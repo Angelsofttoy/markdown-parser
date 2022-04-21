@@ -12,29 +12,27 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         int openBracket = 0;
+        int exclaimMark;
         while(currentIndex < markdown.length()) {
-            /*if(currentIndex == 0){
-                toReturn.add(markdown.substring(0, markdown.length() - 1));
-                currentIndex = markdown.length() - 1;
-                System.out.println(currentIndex);
-                System.out.println(markdown.length());
+            exclaimMark = markdown.indexOf("!", currentIndex);
+            if(exclaimMark != -1){
+                System.out.println("Invalid link format");
                 break;
-            }*/
+            }
 
-            //else{
-                openBracket = markdown.indexOf("[", currentIndex); 
-                if(openBracket == -1){
-                    System.out.println("Invalid link format");
-                    break;
-                }
-                int closeBracket = markdown.indexOf("]", openBracket);
-                int openParen = markdown.indexOf("(", closeBracket);
-                int closeParen = markdown.indexOf(")", openParen); 
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
-                System.out.println(currentIndex);
-                System.out.println(markdown.length());
-            //}
+            openBracket = markdown.indexOf("[", currentIndex); 
+            if(openBracket == -1){
+                System.out.println("Invalid link format");
+                break;
+            }
+            int closeBracket = markdown.indexOf("]", openBracket);
+            int openParen = markdown.indexOf("(", closeBracket);
+            int closeParen = markdown.indexOf(")", openParen); 
+            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            currentIndex = closeParen + 1;
+            System.out.println(currentIndex);
+            System.out.println(markdown.length());
+            
             
         }
 
