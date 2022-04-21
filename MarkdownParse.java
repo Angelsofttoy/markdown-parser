@@ -23,7 +23,7 @@ public class MarkdownParse {
 
             //else{
                 openBracket = markdown.indexOf("[", currentIndex); 
-                if(openBracket == 0){
+                if(openBracket == -1){
                     System.out.println("Invalid link format");
                     break;
                 }
