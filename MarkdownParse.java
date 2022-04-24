@@ -14,11 +14,11 @@ public class MarkdownParse {
         int exclaimMark;
         while(currentIndex < markdown.length()) {
 
-            exclaimMark = markdown.indexOf("!", currentIndex);
+            /*exclaimMark = markdown.indexOf("!", currentIndex);
             if(exclaimMark != -1){
                 System.out.println("Invalid link format");
                 break;
-            }
+            }*/
 
             int openBracket = markdown.indexOf("[", currentIndex); 
             if(openBracket == -1){
