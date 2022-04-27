@@ -1,4 +1,4 @@
-# title
+# Test with only empty bracket
 
 []
 

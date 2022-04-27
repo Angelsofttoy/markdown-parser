@@ -1,1 +1,7 @@
-[link1]https://something.com,[link1]https://something.com
+# text and empty lines between brackets and parenthesis 
+
+[stuff]
+
+paragraph
+
+(page.com)

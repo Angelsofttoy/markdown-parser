@@ -1,1 +1,0 @@
-![Image](hill.jpg)

@@ -6,16 +6,22 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class MarkdownParse {
-
+    
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
+        int exclaimMark;
+        int openBracket;
+        int closeBracket;
+        int openParen;
+        int closeParen;
+        int urlDot;
         while(currentIndex < markdown.length()) {
 
-            int exclaimMark = markdown.indexOf("!", currentIndex);
+            exclaimMark = markdown.indexOf("!", currentIndex);
 
-            int openBracket = markdown.indexOf("[", currentIndex); 
+            openBracket = markdown.indexOf("[", currentIndex); 
             if(exclaimMark == openBracket -1){
                 System.out.println("Invalid link format");
                 break;
@@ -26,19 +32,26 @@ public class MarkdownParse {
                 break;
             }
 
-            int closeBracket = markdown.indexOf("]", openBracket);
+            closeBracket = markdown.indexOf("]", openBracket);
             if(closeBracket == -1){
                 System.out.println("Error: Invalid link format!");
                 break;
             }
 
-            int openParen = markdown.indexOf("(", closeBracket);
-            if(openParen == -1){
+            urlDot = markdown.indexOf(".", openBracket);
+
+            openParen = markdown.indexOf("(", closeBracket);
+            if(openParen == -1 || openParen!= closeBracket + 1){
                 System.out.println("Error: Invalid link format!");
                 break;
             }
 
-            int closeParen = markdown.indexOf(")", openParen); 
+            closeParen = markdown.indexOf(")", openParen); 
+
+            if(!(openParen < urlDot) && !(urlDot < closeParen) || urlDot == -1){
+                System.out.println("Error: Invalid link format!");
+                break;
+            }
             if(closeParen == -1){
                 System.out.println("Error: Invalid link format!");
                 break;
@@ -49,9 +62,7 @@ public class MarkdownParse {
             System.out.println(currentIndex);
             System.out.println(markdown.length());
             
-            
         }
-
         return toReturn;
     }
 
