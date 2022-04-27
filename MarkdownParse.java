@@ -11,16 +11,16 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
-        int exclaimMark;
         while(currentIndex < markdown.length()) {
 
-            exclaimMark = markdown.indexOf("!", currentIndex);
-            if(exclaimMark != -1){
+            int exclaimMark = markdown.indexOf("!", currentIndex);
+
+            int openBracket = markdown.indexOf("[", currentIndex); 
+            if(exclaimMark == openBracket -1){
                 System.out.println("Invalid link format");
                 break;
             }
 
-            int openBracket = markdown.indexOf("[", currentIndex); 
             if(openBracket == -1){
                 System.out.println("Error: Invalid link format!");
                 break;
