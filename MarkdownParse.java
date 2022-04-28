@@ -22,19 +22,19 @@ public class MarkdownParse {
             exclaimMark = markdown.indexOf("!", currentIndex);
 
             openBracket = markdown.indexOf("[", currentIndex); 
-            if(exclaimMark == openBracket -1){
-                System.out.println("Invalid link format");
+            if(exclaimMark == openBracket -1 && exclaimMark != -1){
+                System.out.println("Invalid link format exclaimMark");
                 break;
             }
 
             if(openBracket == -1){
-                System.out.println("Error: Invalid link format!");
+                System.out.println("Error: Invalid link format! openBracket");
                 break;
             }
 
             closeBracket = markdown.indexOf("]", openBracket);
             if(closeBracket == -1){
-                System.out.println("Error: Invalid link format!");
+                System.out.println("Error: Invalid link format! closeBracket");
                 break;
             }
 
@@ -42,18 +42,18 @@ public class MarkdownParse {
 
             openParen = markdown.indexOf("(", closeBracket);
             if(openParen == -1 || openParen!= closeBracket + 1){
-                System.out.println("Error: Invalid link format!");
+                System.out.println("Error: Invalid link format openParen!");
                 break;
             }
 
             closeParen = markdown.indexOf(")", openParen); 
 
             if(!(openParen < urlDot) && !(urlDot < closeParen) || urlDot == -1){
-                System.out.println("Error: Invalid link format!");
+                System.out.println("Error: Invalid link format urlDot!");
                 break;
             }
             if(closeParen == -1){
-                System.out.println("Error: Invalid link format!");
+                System.out.println("Error: Invalid link format closeParen!");
                 break;
             }
 
