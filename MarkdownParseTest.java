@@ -80,7 +80,7 @@ public class MarkdownParseTest extends MarkdownParse {
     }
     @Test
     public void severalspacesinfrontandbehindlink() throws IOException{
-        Path fileName = Path.of("./tester9.md");
+        Path fileName = Path.of("tester9.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
         System.out.println(links);
@@ -102,13 +102,16 @@ public class MarkdownParseTest extends MarkdownParse {
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
         System.out.println(links);
-        assertEquals(List.of("`google.com","google.com","ucsd.edu"), links);
+        assertEquals(List.of("a.com", "a.com(())", "example.com"), links);
     }
 
+    @Test
+    public void testSnippet3() throws IOException{
+        Path fileName = Path.of("snippet3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = getLinks(content);
+        System.out.println(links);
+        assertEquals(List.of("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule"), links);
+    }
 
-
-
-
-
-   
 }
